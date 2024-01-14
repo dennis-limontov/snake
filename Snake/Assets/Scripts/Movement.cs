@@ -14,15 +14,18 @@ namespace Snake
         private float _snakeRotationSpeed;
 
         private Rigidbody _snakeHeadRb;
+        private SnakeHead _snake;
 
         private void Start()
         {
             _snakeHeadRb = GetComponent<Rigidbody>();
+            _snake = _snakeHeadRb.GetComponent<SnakeHead>();
         }
 
         private void FixedUpdate()
         {
-            _snakeHeadRb.AddForce(_inputHandler.Direction * _snakePower, ForceMode.Force);
+            Vector2 direction = _snakePower * _snake.SnakeLength * _inputHandler.Direction;
+            _snakeHeadRb.AddForce(direction.x, 0f, direction.y, ForceMode.Force);
             //transform.Rotate(_inputHandler.Direction * _snakeRotationSpeed);
         }
 
