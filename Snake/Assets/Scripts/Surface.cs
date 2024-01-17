@@ -7,6 +7,26 @@ namespace Snake
         [SerializeField]
         private float _gravity = -9.81f;
 
+        [SerializeField]
+        private SphereCollider _surfaceCollider;
+
+        [SerializeField]
+        private Food _food;
+
+        private int _foodAmount = 10;
+
+        private float _foodHeight = 0.5f;
+
+        public void OnTriggerStay(Collider other)
+        {
+            Attract(other.GetComponent<Rigidbody>());
+        }
+
+        private void Start()
+        {
+            GenerateFood(_foodAmount);
+        }
+
         public void Attract(Rigidbody rigidbody)
         {
             Vector3 up = (rigidbody.position - transform.position).normalized;
@@ -17,9 +37,13 @@ namespace Snake
                 * rigidbody.rotation;
         }
 
-        public void OnTriggerStay(Collider other)
+        private void GenerateFood(int amount)
         {
-            Attract(other.GetComponent<Rigidbody>());
+            for (int i = 0; i < amount; i++)
+            {
+                Instantiate(_food, _surfaceCollider.center + Random.onUnitSphere.normalized
+                    * (_surfaceCollider.radius + _foodHeight), Quaternion.identity);
+            }
         }
     }
 }

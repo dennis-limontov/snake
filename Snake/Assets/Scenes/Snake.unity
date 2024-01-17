@@ -323,7 +323,7 @@ Transform:
   m_GameObject: {fileID: 347636335}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.07, y: 0, z: 46.83}
+  m_LocalPosition: {x: 84.3, y: 0, z: 46.83}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1342,11 +1342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3156251859751936883, guid: 500b40994ecfd854999be26021949ab5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.826693
+      value: 8.73
       objectReference: {fileID: 0}
     - target: {fileID: 3156251859751936883, guid: 500b40994ecfd854999be26021949ab5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 26.12
+      value: 23.64
       objectReference: {fileID: 0}
     - target: {fileID: 3156251859751936883, guid: 500b40994ecfd854999be26021949ab5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1682,6 +1682,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gravity: -9.81
+  _surfaceCollider: {fileID: 1590761310}
+  _food: {fileID: 8956112055741723770, guid: 500b40994ecfd854999be26021949ab5, type: 3}
 --- !u!135 &1590761315
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1971,7 +1973,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.3052206
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1979,7 +1981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -47.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
       propertyPath: m_LocalRotation.w
