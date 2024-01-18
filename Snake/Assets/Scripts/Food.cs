@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Snake
 {
     public class Food : MonoBehaviour
     {
+        public static Action OnFoodEaten;
     }
 }

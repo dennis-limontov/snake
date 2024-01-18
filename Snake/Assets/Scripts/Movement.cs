@@ -27,7 +27,7 @@ namespace Snake
         private void FixedUpdate()
         {
             _snakeHeadRb.velocity = _snakeSpeed * transform.forward;
-            _snakeHeadRb.AddForce(_snakeSpeed * transform.forward, ForceMode.Force);
+            //_snakeHeadRb.AddForce(_snakeSpeed * transform.forward, ForceMode.Force);
         }
 
         private void Update()
@@ -55,7 +55,7 @@ namespace Snake
                 //{
                     //float sign = (_snakeDestinationAngle > transform.localEulerAngles.y) ? 1f : -1f;
                     //transform.Rotate(0f, _snakeRotationSpeed * sign * Time.deltaTime, 0f);
-                    //_snakeQuaternion = Quaternion.Euler(0f, _snakeDestinationAngle, 0f);
+                    _snakeQuaternion = Quaternion.Euler(0f, _snakeDestinationAngle, 0f);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation,
                         _snakeQuaternion, _snakeRotationSpeed * Time.deltaTime);
                     //transform.localEulerAngles = new Vector3(0f, _snakeDestinationAngle, 0f);

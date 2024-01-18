@@ -29,8 +29,8 @@ namespace Snake
             if (other.GetComponent<Food>())
             {
                 Destroy(other.gameObject);
-                // generate another food
-                AddSnakeBodyPart();
+                Food.OnFoodEaten?.Invoke();
+                //AddSnakeBodyPart();
             }
         }
 
