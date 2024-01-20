@@ -30,17 +30,18 @@ namespace Snake
             {
                 Destroy(other.gameObject);
                 Food.OnFoodEaten?.Invoke();
-                //AddSnakeBodyPart();
+                AddSnakeBodyPart();
             }
         }
 
         private void AddSnakeBodyPart()
         {
             GameObject snakeNewPart = Instantiate(_snakeBodyPart, transform.parent);
-            snakeNewPart.transform.SetPositionAndRotation(_snakeBodyParts[^1].transform.position,
-                _snakeBodyParts[^1].transform.rotation);
+            Transform newSnakeBodyTransform = _snakeBodyParts[^1].transform;
+            snakeNewPart.transform.SetPositionAndRotation(newSnakeBodyTransform.position,
+                newSnakeBodyTransform.rotation);
             _snakeBodyParts.Add(snakeNewPart);
-            snakeNewPart.GetComponent<HingeJoint>().connectedBody = _snakeBodyParts[^2].GetComponent<Rigidbody>();
+            snakeNewPart.GetComponent<HingeJoint>().connectedBody = newSnakeBodyTransform.GetComponent<Rigidbody>();
         }
     }
 }

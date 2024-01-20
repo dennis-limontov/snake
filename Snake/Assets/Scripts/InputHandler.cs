@@ -18,7 +18,6 @@ namespace Snake
         private float _maxDistance;
 
         private float _ringMovementSpeed = 30f;
-        private Vector2 _startPosition;
         private Vector2 _direction;
 
         private void Awake()
@@ -29,9 +28,8 @@ namespace Snake
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            _startPosition = eventData.position;
-            _knob.transform.position = _startPosition;
-            _ring.transform.position = _startPosition;
+            _knob.transform.position = eventData.position;
+            _ring.transform.position = eventData.position;
             _knob.enabled = true;
             _ring.enabled = true;
             _direction = Vector2.zero;
@@ -41,10 +39,12 @@ namespace Snake
         {
             _knob.transform.position = eventData.position;
 
-            _direction = ((Vector2)_knob.transform.position - _startPosition) / _maxDistance;
+            float ringLength = _ring.GetComponent<RectTransform>().sizeDelta.x;
+            _direction = (eventData.position - (Vector2)_ring.transform.position)
+                / ((ringLength - _knob.rectTransform.sizeDelta.x) / 2);
 
             if (Vector2.Distance(eventData.position, _ring.transform.position)
-                >= (_ring.GetComponent<RectTransform>().sizeDelta.x * 0.8f / 2))
+                >= (ringLength * 0.8f / 2))
             {
                 _ring.transform.position = Vector2.MoveTowards(_ring.transform.position,
                     eventData.position, _ringMovementSpeed);

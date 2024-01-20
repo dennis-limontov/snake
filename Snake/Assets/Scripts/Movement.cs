@@ -51,7 +51,7 @@ namespace Snake
             {
                 _snakeDestinationAngle = Mathf.Atan2(h, v) * 180f / Mathf.PI;
 
-                if (Mathf.Abs(transform.localEulerAngles.y - _snakeDestinationAngle) > 0.1f)
+                //if (Mathf.Abs(transform.localEulerAngles.y - _snakeDestinationAngle) > 0.1f)
                 //{
                     //float sign = (_snakeDestinationAngle > transform.localEulerAngles.y) ? 1f : -1f;
                     //transform.Rotate(0f, _snakeRotationSpeed * sign * Time.deltaTime, 0f);
