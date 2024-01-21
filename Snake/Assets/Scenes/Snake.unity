@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _knob: {fileID: 1550585505}
   _ring: {fileID: 1902779890}
-  _maxDistance: 100
+  _ringMovementSpeed: 30
 --- !u!1 &464506624
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.35
+      value: -4.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
       propertyPath: m_LocalRotation.w
@@ -513,9 +513,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1005904034}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1005904037}
   m_SourcePrefab: {fileID: 100100000, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
 --- !u!1 &705507993
 GameObject:
@@ -789,8 +786,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputHandler: {fileID: 425425824}
-  _snakeSpeed: 5
-  _snakeRotationSpeed: 50
+  _movementSpeed: 5
+  _rotationSpeed: 50
 --- !u!65 &1005904034
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -826,18 +823,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _snakeBodyPart: {fileID: 3936817878774304269, guid: 1d2a47b648bb7274fb5e1907bd1b910a, type: 3}
   _snakeStartLength: 1
---- !u!75 &1005904037
-ConstantForce:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005904030}
-  m_Enabled: 0
-  m_Force: {x: 0, y: 0, z: 0}
-  m_RelativeForce: {x: 0, y: 0, z: 1}
-  m_Torque: {x: 0, y: 0, z: 0}
-  m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!1 &1405498097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,9 +1038,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gravity: -9.81
-  _surfaceMesh: {fileID: -472147775963580301, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
-  _food: {fileID: 8956112055741723770, guid: 500b40994ecfd854999be26021949ab5, type: 3}
-  _foodParent: {fileID: 1921000529}
 --- !u!135 &1590761315
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1156,7 +1138,7 @@ Transform:
   m_GameObject: {fileID: 1701425284}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1316,6 +1298,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 882972225}
   m_SourcePrefab: {fileID: 100100000, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
+--- !u!33 &1796904061 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -378979819684146008, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
+  m_PrefabInstance: {fileID: 1796904060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1902779889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,6 +1387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1921000529}
+  - component: {fileID: 1921000530}
   m_Layer: 0
   m_Name: Food
   m_TagString: Untagged
@@ -1422,6 +1410,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1921000530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921000528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7775d1d8e9315784a92d901dbb29f134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _food: {fileID: 8956112055741723770, guid: 500b40994ecfd854999be26021949ab5, type: 3}
+  _foodParent: {fileID: 1921000529}
+  _foodAmount: 50
+  _foodHeight: 0.25
+  _surfaceMeshFilter: {fileID: 1796904061}
 --- !u!4 &2119955375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}

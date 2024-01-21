@@ -26,10 +26,9 @@ namespace Snake
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<Food>())
+            if (other.TryGetComponent(out Food food))
             {
-                Destroy(other.gameObject);
-                Food.OnFoodEaten?.Invoke();
+                Food.OnFoodEaten?.Invoke(food);
                 AddSnakeBodyPart();
             }
         }
@@ -37,11 +36,11 @@ namespace Snake
         private void AddSnakeBodyPart()
         {
             GameObject snakeNewPart = Instantiate(_snakeBodyPart, transform.parent);
-            Transform newSnakeBodyTransform = _snakeBodyParts[^1].transform;
-            snakeNewPart.transform.SetPositionAndRotation(newSnakeBodyTransform.position,
-                newSnakeBodyTransform.rotation);
+            Transform lastSnakeBodyTransform = _snakeBodyParts[^1].transform;
             _snakeBodyParts.Add(snakeNewPart);
-            snakeNewPart.GetComponent<HingeJoint>().connectedBody = newSnakeBodyTransform.GetComponent<Rigidbody>();
+            snakeNewPart.transform.SetPositionAndRotation(lastSnakeBodyTransform.position,
+                lastSnakeBodyTransform.rotation);
+            snakeNewPart.GetComponent<Joint>().connectedBody = lastSnakeBodyTransform.GetComponent<Rigidbody>();
         }
     }
 }

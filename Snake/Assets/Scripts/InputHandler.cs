@@ -15,15 +15,19 @@ namespace Snake
         private Image _ring;
 
         [SerializeField]
-        private float _maxDistance;
-
         private float _ringMovementSpeed = 30f;
+
+        private float _ringRadius;
+        private float _maxDistance;
         private Vector2 _direction;
 
         private void Awake()
         {
             _knob.enabled = false;
             _ring.enabled = false;
+            _ringRadius = _ring.rectTransform.sizeDelta.x / 2;
+            float knobRadius = _knob.rectTransform.sizeDelta.x / 2;
+            _maxDistance = _ringRadius - knobRadius;
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -39,16 +43,14 @@ namespace Snake
         {
             _knob.transform.position = eventData.position;
 
-            float ringLength = _ring.GetComponent<RectTransform>().sizeDelta.x;
-            _direction = (eventData.position - (Vector2)_ring.transform.position)
-                / ((ringLength - _knob.rectTransform.sizeDelta.x) / 2);
-
             if (Vector2.Distance(eventData.position, _ring.transform.position)
-                >= (ringLength * 0.8f / 2))
+                >= (_ringRadius * 0.8f))
             {
                 _ring.transform.position = Vector2.MoveTowards(_ring.transform.position,
                     eventData.position, _ringMovementSpeed);
             }
+
+            _direction = (eventData.position - (Vector2)_ring.transform.position) / _maxDistance;
         }
 
         public void OnPointerUp(PointerEventData eventData)

@@ -5,6 +5,6 @@ namespace Snake
 {
     public class Food : MonoBehaviour
     {
-        public static Action OnFoodEaten;
+        public static Action<Food> OnFoodEaten;
     }
 }

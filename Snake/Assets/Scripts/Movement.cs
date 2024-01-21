@@ -8,25 +8,21 @@ namespace Snake
         private InputHandler _inputHandler;
 
         [SerializeField]
-        private float _snakeSpeed;
+        private float _movementSpeed;
 
         [SerializeField]
-        private float _snakeRotationSpeed;
+        private float _rotationSpeed;
 
-        private Rigidbody _snakeHeadRb;
-
-        private float _snakeDestinationAngle;
-
-        private Quaternion _snakeQuaternion;
+        private Rigidbody _rigidbody;
 
         private void Start()
         {
-            _snakeHeadRb = GetComponent<Rigidbody>();
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
         private void FixedUpdate()
         {
-            _snakeHeadRb.velocity = _snakeSpeed * transform.forward;
+            _rigidbody.velocity = _movementSpeed * transform.forward;
             //_snakeHeadRb.AddForce(_snakeSpeed * transform.forward, ForceMode.Force);
         }
 
@@ -34,30 +30,16 @@ namespace Snake
         {
             float h = _inputHandler.Direction.x; 
             float v = _inputHandler.Direction.y;
-            if ((h == 0f) && (v == 0f))
+            if ((h != 0f) || (v != 0f))
             {
-                /*Vector3 chapa, chipi = transform.localEulerAngles;
-                if (chipi.y > 180f)
-                {
-                    chapa = new Vector3(0f, 359.999f, 0f);
-                }
-                else
-                {
-                    chapa = Vector3.zero;
-                }
-                transform.localEulerAngles = Vector3.Slerp(chipi, chapa, Time.deltaTime * 2f);*/
-            }
-            else
-            {
-                _snakeDestinationAngle = Mathf.Atan2(h, v) * 180f / Mathf.PI;
-
+                float destinationAngle = Mathf.Atan2(h, v) * 180f / Mathf.PI;
+                Quaternion destinationQuaternion = Quaternion.Euler(0f, destinationAngle, 0f);
                 //if (Mathf.Abs(transform.localEulerAngles.y - _snakeDestinationAngle) > 0.1f)
                 //{
                     //float sign = (_snakeDestinationAngle > transform.localEulerAngles.y) ? 1f : -1f;
                     //transform.Rotate(0f, _snakeRotationSpeed * sign * Time.deltaTime, 0f);
-                    _snakeQuaternion = Quaternion.Euler(0f, _snakeDestinationAngle, 0f);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                        _snakeQuaternion, _snakeRotationSpeed * Time.deltaTime);
+                        destinationQuaternion, _rotationSpeed * Time.deltaTime);
                     //transform.localEulerAngles = new Vector3(0f, _snakeDestinationAngle, 0f);
                 //}
             }
