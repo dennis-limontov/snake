@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Snake
@@ -16,10 +14,10 @@ namespace Snake
         private int _foodAmount = 50;
 
         [SerializeField]
-        private float _foodHeight = 0.25f;
+        private float _foodHeight = 0.35f;
 
         [SerializeField]
-        private MeshFilter _surfaceMeshFilter;
+        private MeshCollider _surfaceMeshCollider;
 
         private Mesh _surfaceMesh;
 
@@ -30,7 +28,7 @@ namespace Snake
 
         private void Start()
         {
-            _surfaceMesh = _surfaceMeshFilter.mesh;
+            _surfaceMesh = _surfaceMeshCollider.sharedMesh;
 
             Food.OnFoodEaten += GenerateFood;
 
@@ -78,7 +76,7 @@ namespace Snake
             {
                 newFood = Instantiate(_food, _foodParent);
             }
-            newFood.transform.position = GetRandomPointOnSurface(_surfaceMesh);
+            newFood.transform.position = _surfaceMeshCollider.ClosestPoint(GetRandomPointOnSurface(_surfaceMesh));
             newFood.transform.position += (newFood.transform.position - transform.position).normalized
                 * (newFood.GetComponent<SphereCollider>().radius + _foodHeight);
         }

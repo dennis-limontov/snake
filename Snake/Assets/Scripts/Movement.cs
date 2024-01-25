@@ -8,10 +8,10 @@ namespace Snake
         private InputHandler _inputHandler;
 
         [SerializeField]
-        private float _movementSpeed;
+        private float _movementSpeed = 5f;
 
         [SerializeField]
-        private float _rotationSpeed;
+        private float _rotationSpeed = 90f;
 
         private Rigidbody _rigidbody;
 

@@ -787,7 +787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputHandler: {fileID: 425425824}
   _movementSpeed: 5
-  _rotationSpeed: 50
+  _rotationSpeed: 200
 --- !u!65 &1005904034
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -822,6 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _snakeBodyPart: {fileID: 3936817878774304269, guid: 1d2a47b648bb7274fb5e1907bd1b910a, type: 3}
+  _snakeBodyDistance: 0.6
   _snakeStartLength: 1
 --- !u!1 &1405498097
 GameObject:
@@ -1298,11 +1299,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 882972225}
   m_SourcePrefab: {fileID: 100100000, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
---- !u!33 &1796904061 stripped
-MeshFilter:
-  m_CorrespondingSourceObject: {fileID: -378979819684146008, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
-  m_PrefabInstance: {fileID: 1796904060}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1902779889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,8 +1421,8 @@ MonoBehaviour:
   _food: {fileID: 8956112055741723770, guid: 500b40994ecfd854999be26021949ab5, type: 3}
   _foodParent: {fileID: 1921000529}
   _foodAmount: 50
-  _foodHeight: 0.25
-  _surfaceMeshFilter: {fileID: 1796904061}
+  _foodHeight: 0.5
+  _surfaceMeshCollider: {fileID: 1590761319}
 --- !u!4 &2119955375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}
