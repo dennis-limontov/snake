@@ -6,8 +6,6 @@ namespace Snake
 {
     public class InputHandler : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {
-        public Vector2 Direction => _direction;
-
         [SerializeField]
         private Image _knob;
 
@@ -17,10 +15,12 @@ namespace Snake
         [SerializeField]
         private float _ringMovementSpeed = 30f;
 
+        private Vector2 _direction;
+        public Vector2 Direction => _direction;
+
         private float _ringRadius;
         private float _maxDistance;
-        private Vector2 _direction;
-
+        
         private void Awake()
         {
             _knob.enabled = false;
@@ -44,13 +44,13 @@ namespace Snake
             _knob.transform.position = eventData.position;
 
             if (Vector2.Distance(eventData.position, _ring.transform.position)
-                >= (_ringRadius * 0.8f))
+                >= (_ringRadius * 1f))
             {
                 _ring.transform.position = Vector2.MoveTowards(_ring.transform.position,
                     eventData.position, _ringMovementSpeed);
             }
 
-            _direction = (eventData.position - (Vector2)_ring.transform.position) / _maxDistance;
+            _direction = (eventData.position - (Vector2)_ring.transform.position) / _ringRadius;
         }
 
         public void OnPointerUp(PointerEventData eventData)

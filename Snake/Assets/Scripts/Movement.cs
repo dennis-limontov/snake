@@ -11,9 +11,10 @@ namespace Snake
         private float _movementSpeed = 5f;
 
         [SerializeField]
-        private float _rotationSpeed = 90f;
+        private float _rotationSpeed = 180f;
 
         private Rigidbody _rigidbody;
+        private Quaternion _rotation = Quaternion.identity;
 
         private void Start()
         {
@@ -30,19 +31,23 @@ namespace Snake
         {
             float h = _inputHandler.Direction.x; 
             float v = _inputHandler.Direction.y;
+            //Debug.Log("h = " + h + ", v = " + v);
             if ((h != 0f) || (v != 0f))
             {
                 float destinationAngle = Mathf.Atan2(h, v) * 180f / Mathf.PI;
+
                 Quaternion destinationQuaternion = Quaternion.Euler(0f, destinationAngle, 0f);
-                //if (Mathf.Abs(transform.localEulerAngles.y - _snakeDestinationAngle) > 0.1f)
-                //{
-                    //float sign = (_snakeDestinationAngle > transform.localEulerAngles.y) ? 1f : -1f;
-                    //transform.Rotate(0f, _snakeRotationSpeed * sign * Time.deltaTime, 0f);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                        destinationQuaternion, _rotationSpeed * Time.deltaTime);
-                    //transform.localEulerAngles = new Vector3(0f, _snakeDestinationAngle, 0f);
-                //}
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, destinationQuaternion,
+                    _rotationSpeed * Time.deltaTime);
             }
         }
+
+        /*private void Update()
+        {
+            float h = _inputHandler.Direction.x;
+            float v = _inputHandler.Direction.y;
+            Debug.Log("h = " + h + ", v = " + v);
+            transform.Rotate(new Vector3(0f, _rotationSpeed * h, 0f) * Time.deltaTime);
+        }*/
     }
 }
