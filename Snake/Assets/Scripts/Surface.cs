@@ -9,7 +9,10 @@ namespace Snake
 
         public void OnTriggerStay(Collider other)
         {
-            Attract(other.GetComponent<Rigidbody>());
+            if (other.TryGetComponent(out Rigidbody rigidbody))
+            {
+                Attract(rigidbody);
+            }
         }
 
         public void Attract(Rigidbody rigidbody)

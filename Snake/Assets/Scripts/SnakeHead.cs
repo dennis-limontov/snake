@@ -9,39 +9,15 @@ namespace Snake
         private GameObject _snakeBodyPart;
 
         [SerializeField]
-        private float _snakeBodyDistance = 1f;
+        private float _snakeBodyDistance = 0.6f;
 
         [SerializeField]
-        private uint _snakeStartLength;
+        private uint _snakeStartLength = 1;
 
-        private List<GameObject> _snakeBodyParts = new List<GameObject>();
-        public int SnakeLength => _snakeBodyParts.Count;
+        private readonly List<GameObject> _snakeBodyParts = new List<GameObject>();
 
-        private List<(Vector3 pos, Quaternion rot)> _snakeWaypoints;
-
-        private void Start()
-        {
-            _snakeBodyParts.Add(gameObject);
-            _snakeWaypoints = new List<(Vector3 pos, Quaternion rot)>()
-            {
-                (transform.position, transform.rotation),
-                (transform.position + new Vector3(0f, 0f, 1f), transform.rotation)
-            };
-
-            for (int i = 1; i < _snakeStartLength; i++)
-            {
-                AddSnakeBodyPart();
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponent(out Food food))
-            {
-                Food.OnFoodEaten?.Invoke(food);
-                AddSnakeBodyPart();
-            }
-        }
+        private readonly List<(Vector3 pos, Quaternion rot)> _snakeWaypoints
+            = new List<(Vector3 pos, Quaternion rot)>();
 
         private void FixedUpdate()
         {
@@ -55,6 +31,27 @@ namespace Snake
                         _snakeWaypoints[i].rot);
                 }
                 _snakeWaypoints[0] = (transform.position, transform.rotation);
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out Food food))
+            {
+                Food.OnFoodEaten?.Invoke(food);
+                AddSnakeBodyPart();
+            }
+        }
+
+        private void Start()
+        {
+            _snakeBodyParts.Add(gameObject);
+            _snakeWaypoints.Add((transform.position, transform.rotation));
+            _snakeWaypoints.Add((transform.position, transform.rotation));
+
+            for (int i = 0; i < _snakeStartLength; i++)
+            {
+                AddSnakeBodyPart();
             }
         }
 

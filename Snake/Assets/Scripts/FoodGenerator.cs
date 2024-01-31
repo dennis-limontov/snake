@@ -14,7 +14,7 @@ namespace Snake
         private int _foodAmount = 50;
 
         [SerializeField]
-        private float _foodHeight = 0.35f;
+        private float _foodHeight = 0.7f;
 
         [SerializeField]
         private MeshCollider _surfaceMeshCollider;
