@@ -455,13 +455,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1005904038}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1005904040}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1005904037}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1005904036}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1005904038}
+      addedObject: {fileID: 1005904039}
   m_SourcePrefab: {fileID: 100100000, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
 --- !u!1 &705507993
 GameObject:
@@ -695,21 +698,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b62b8a8240d2b1945a61ac96abc31fef, type: 3}
   m_PrefabInstance: {fileID: 655728414}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1005904036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005904030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1612511cd2352444c9f8763732a836c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _snakeBodyPart: {fileID: 3936817878774304269, guid: 1d2a47b648bb7274fb5e1907bd1b910a, type: 3}
-  _snakeBodyDistance: 0.6
-  _snakeStartLength: 1
 --- !u!114 &1005904037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,6 +733,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1005904039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005904030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40833724c4ce6af40b3461cc1175995d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _snakeBodyPart: {fileID: 3936817878774304269, guid: 1d2a47b648bb7274fb5e1907bd1b910a, type: 3}
+  _snakeBodyDistance: 0.6
+  _snakeStartLength: 1
+  _foodEater: {fileID: 1005904040}
+--- !u!114 &1005904040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005904030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 792e6776b9adecf42adb5b586d59b928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1405498097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,7 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fdc36cccc83c704789547c1a62eb368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _snakeHead: {fileID: 1005904036}
+  _snakeHead: {fileID: 1005904039}
   _movementSpeed: 6
 --- !u!54 &1701425287
 Rigidbody:
@@ -1481,8 +1497,9 @@ MonoBehaviour:
   _food: {fileID: 8956112055741723770, guid: 500b40994ecfd854999be26021949ab5, type: 3}
   _foodParent: {fileID: 1921000529}
   _foodAmount: 50
-  _foodHeight: 0.7
+  _foodHeight: 0.8
   _surfaceMeshCollider: {fileID: 1590761319}
+  _foodEater: {fileID: 1005904040}
 --- !u!4 &2119955375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4de917424f1d73946b3e65058bd2c2b8, type: 3}

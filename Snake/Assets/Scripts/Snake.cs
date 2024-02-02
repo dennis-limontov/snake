@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Snake
 {
-    public class SnakeHead : MonoBehaviour
+    public class Snake : MonoBehaviour
     {
         [SerializeField]
         private GameObject _snakeBodyPart;
@@ -13,6 +13,9 @@ namespace Snake
 
         [SerializeField]
         private uint _snakeStartLength = 1;
+
+        [SerializeField]
+        private FoodEater _foodEater;
 
         private readonly List<GameObject> _snakeBodyParts = new List<GameObject>();
 
@@ -34,13 +37,9 @@ namespace Snake
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnDestroy()
         {
-            if (other.TryGetComponent(out Food food))
-            {
-                Food.OnFoodEaten?.Invoke(food);
-                AddSnakeBodyPart();
-            }
+            _foodEater.OnFoodEaten -= FoodEatenHandler;
         }
 
         private void Start()
@@ -53,9 +52,16 @@ namespace Snake
             {
                 AddSnakeBodyPart();
             }
+
+            _foodEater.OnFoodEaten += FoodEatenHandler;
         }
 
-        private void AddSnakeBodyPart()
+        private void FoodEatenHandler(Food food)
+        {
+            AddSnakeBodyPart();
+        }
+
+        public void AddSnakeBodyPart()
         {
             GameObject snakeNewPart = Instantiate(_snakeBodyPart, transform.parent);
             _snakeBodyParts.Add(snakeNewPart);

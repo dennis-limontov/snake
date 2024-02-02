@@ -14,28 +14,31 @@ namespace Snake
         private int _foodAmount = 50;
 
         [SerializeField]
-        private float _foodHeight = 0.7f;
+        private float _foodHeight = 0.8f;
 
         [SerializeField]
         private MeshCollider _surfaceMeshCollider;
+
+        [SerializeField]
+        private FoodEater _foodEater;
 
         private Mesh _surfaceMesh;
 
         private void OnDestroy()
         {
-            Food.OnFoodEaten -= GenerateFood;
+            _foodEater.OnFoodEaten -= GenerateFood;
         }
 
         private void Start()
         {
             _surfaceMesh = _surfaceMeshCollider.sharedMesh;
 
-            Food.OnFoodEaten += GenerateFood;
-
             for (int i = 0; i < _foodAmount; i++)
             {
                 GenerateFood();
             }
+
+            _foodEater.OnFoodEaten += GenerateFood;
         }
 
         private static Vector3 GetRandomPointOnSurface(Mesh m)

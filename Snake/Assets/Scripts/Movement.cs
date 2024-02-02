@@ -5,7 +5,7 @@ namespace Snake
     public class Movement : MonoBehaviour
     {
         [SerializeField]
-        private SnakeHead _snakeHead;
+        private Snake _snakeHead;
 
         [SerializeField]
         private float _movementSpeed = 6f;
